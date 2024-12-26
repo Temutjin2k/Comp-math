@@ -18,7 +18,7 @@ def gauss_seidel_method(A, b, max_iter=1000, tol=1e-10):
         print("A:", A)
         print("b:",b)
     
-    if np.any(np.abs(np.diag(A)) < 1e-10):
+    if np.any(np.abs(np.diag(A)) < tol):
         return None
         
     x = np.zeros(n)
@@ -38,7 +38,7 @@ def gauss_seidel_method(A, b, max_iter=1000, tol=1e-10):
             print("Iterations for gauss_seidel method:", iter_num)
             return x_new
             
-        if np.any(np.isnan(x_new)) or np.any(np.abs(x_new) > 1e6):
+        if np.any(np.isnan(x_new)) or np.any(np.abs(x_new) > tol):
             print("Iterations for gauss_seidel method:", iter_num)
             return None
         

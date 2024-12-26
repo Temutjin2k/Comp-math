@@ -26,7 +26,7 @@ def gauss_seidel_method(A, b, max_iter=1000, tol=1e-10):
     iter_num = 0
 
     for iter_count in range(max_iter):
-        iter_num = i
+        iter_num = iter_count
 
         x_new = np.zeros(n)
         for i in range(n):
@@ -35,13 +35,14 @@ def gauss_seidel_method(A, b, max_iter=1000, tol=1e-10):
             x_new[i] = (b[i] - s1 - s2) / A[i,i]
         
         if np.allclose(x, x_new, rtol=tol):
-            print("Iterations for gauss_seidel method:", iter_num)
+            print("Iterations for gauss_seidel method:", iter_num + 1)
             return x_new
             
-        if np.any(np.isnan(x_new)) or np.any(np.abs(x_new) > tol):
-            print("Iterations for gauss_seidel method:", iter_num)
+        if np.any(np.isnan(x_new)) or np.any(np.abs(x_new) > 1e6):
+            print("Iterations for gauss_seidel method:", iter_num + 1)
             return None
         
         x = x_new
-    print("Iterations for gauss_seidel method:", iter_num)
+
+    print("Iterations for gauss_seidel method:", iter_num + 1)
     return None  

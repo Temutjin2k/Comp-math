@@ -38,30 +38,6 @@ def solve_using_methods(A, b):
 
     return results
 
-def compare_solution_results(results):
-    """
-    Compares the results from different methods and calculates the maximum difference
-    between solutions, providing a detailed comparison.
-    """
-    print("\nComparison of Results:")
-
-    # Check if there are multiple results to compare
-    if len(results) > 1:    
-        # Calculate the maximum difference between any two methods' results
-        max_diff = max(
-            np.max(np.abs(results[m1] - results[m2])) 
-            for m1 in results for m2 in results if m1 != m2
-        )
-        
-        # Print the comparison details
-        print(f"Maximum difference between methods: {max_diff:.6e}")
-        
-        # List which methods converged
-        converged_methods = ', '.join(results.keys())
-        print(f"Converged methods: {converged_methods}")
-    else:
-        print("Not enough converged methods to compare.")
-
 
 # Task
 A = np.array([
@@ -73,8 +49,5 @@ A = np.array([
 
 b = np.array([18, 26, 34, 82], dtype=float)
 
-# Solve the system and collect results
 results = solve_using_methods(A, b)
 
-# Compare the solutions obtained
-compare_solution_results(results)

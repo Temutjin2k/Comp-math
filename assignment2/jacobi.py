@@ -24,6 +24,7 @@ def jacobi_method(A, b, max_iter=1000, tol=1e-10):
         return None  
     
     R = A - np.diagflat(D)
+    
     x = np.zeros(n)
     
     
@@ -37,7 +38,7 @@ def jacobi_method(A, b, max_iter=1000, tol=1e-10):
             return x_new
         x = x_new
         
-        if np.any(np.isnan(x)) or np.any(np.abs(x) > tol):
+        if np.any(np.isnan(x)) or np.any(np.abs(x) > 1e6):
             print("Iterations for jacobi_method:", i)
             return None
         

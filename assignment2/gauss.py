@@ -4,8 +4,9 @@ def gauss_method(A, B):
     augmented_matrix = np.column_stack((A, B))  
     rows, cols = augmented_matrix.shape
 
-    
+    print("\n Method gauss's step")    
     for i in range(rows):
+        print(i, augmented_matrix)
         max_row = np.argmax(np.abs(augmented_matrix[i:, i])) + i  
         augmented_matrix[[i, max_row]] = augmented_matrix[[max_row, i]]  
         augmented_matrix[i] /= augmented_matrix[i, i]  

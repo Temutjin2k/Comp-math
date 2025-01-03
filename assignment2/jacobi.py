@@ -24,7 +24,7 @@ def jacobi_method(A, b, max_iter=1000, tol=1e-10):
         return None  
     
     R = A - np.diagflat(D)
-    
+    print("R:", R)
     x = np.zeros(n)
     
     

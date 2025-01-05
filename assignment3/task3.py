@@ -28,10 +28,10 @@ tolerance = 1e-10
 max_iter = 1000   
 
 for i in range(max_iter):
-    R = I - np.dot(A, B) # Compute residual R = I - AB
-    B_new = B + np.dot(B, R) # Update B: B_new = B + BR
+    E = I - np.dot(A, B) # Compute residual E = I - AB
+    B_new = B + np.dot(B, E) # Update B: B_new = B + BE
     
-    if np.linalg.norm(R, ord=np.inf) < tolerance:  # Check for convergence
+    if np.linalg.norm(E, ord=np.inf) < tolerance:  # Check for convergence
         print(f"Converged in {i} iterations.")
         break
     

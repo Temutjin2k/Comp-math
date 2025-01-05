@@ -16,8 +16,8 @@ for i in range(max_iter):
 
     v_next_norm = np.linalg.norm(v_next) # Normalize the vector
     v_next = v_next / v_next_norm
-    lambda_est = np.dot(v_next, np.dot(A, v_next)) # Estimate the eigenvalue
-    
+    lambda_est = np.dot(v_next, np.dot(A, v_next)) # Estimate the eigenvalue using the Rayleigh quotient:
+
     print(f"Iteration {i + 1}:")
     print(f"Eigenvector: {v_next}")
     print(f"Eigenvalue: {lambda_est}")

@@ -3,63 +3,59 @@
 # A = √2 3  √2
 #     2  √2  1
 
-
+import math
 import numpy as np
 
-def jacobi_method(A, max_iter=100, tol=1e-10):
-    A = np.array(A, dtype=float)
+def jacobi_method(A, tolerance=1e-6, max_iterations=100):
     n = A.shape[0]
+    V = np.eye(n) # Initialize the eigenvector matrix V as the identity matrix
     
-    # Начальная матрица и собственные векторы
-    eig_vals = np.diagonal(A)
-    eig_vecs = np.eye(n)
-    
-    for i in range(max_iter):
-        # Находим максимальный элемент вне диагонали
-        off_diagonal = np.abs(A - np.diag(np.diagonal(A)))
-        max_val = np.max(off_diagonal)
+    for iteration in range(max_iterations):
+        max_val = 0
+        p, q = 0, 0
         
-        if max_val < tol:
+        # Find the largest off-diagonal element in the matrix A
+        for i in range(n):
+            for j in range(i + 1, n):
+                if abs(A[i, j]) > max_val:
+                    max_val = abs(A[i, j])
+                    p, q = i, j
+    
+        if max_val < tolerance:
             break
         
-        # Ищем индексы для максимального элемента
-        p, q = np.unravel_index(np.argmax(off_diagonal), A.shape)
+        theta = 0.5 * np.arctan2(2 * A[p, q], A[p, p] - A[q, q]) # Calculate the angle (theta) for the Jacobi rotation
+        c, s = np.cos(theta), np.sin(theta)
         
-        # Если p == q, продолжаем
-        if A[p, p] == A[q, q]:
-            continue
+        J = np.eye(n) # Create a rotation matrix J
+        J[p, p], J[q, q] = c, c
+        J[p, q], J[q, p] = s, -s
+               
+        A = np.dot(J.T, np.dot(A, J))  # Perform the rotation to update the matrix A
+        V = np.dot(V, J)  # Update the eigenvectors matrix V
         
-        # Вычисляем угол поворота
-        if A[p, p] != A[q, q]:
-            theta = 0.5 * np.arctan(2 * A[p, q] / (A[p, p] - A[q, q]))
-        else:
-            theta = np.pi / 4
-        
-        # Создаем матрицу поворота
-        R = np.eye(n)
-        R[p, p] = R[q, q] = np.cos(theta)
-        R[p, q] = -np.sin(theta)
-        R[q, p] = np.sin(theta)
-        
-        # Обновляем матрицу A и собственные векторы
-        A = np.dot(np.dot(R.T, A), R)
-        eig_vecs = np.dot(eig_vecs, R)
-        print("Iteration", i)
+        # Print the results of each iteration
+        print(f"Iteration {iteration + 1}:")
+        print("Matrix A after rotation:")
         print(A)
-        print(eig_vecs)
+        print("Eigenvectors matrix V:")
+        print(V)
+        print("Largest off-diagonal value:", max_val)
+        print("------------------------------")
     
-    eig_vals = np.diagonal(A)
-    
-    return eig_vals, eig_vecs
+    # The eigenvalues are the diagonal elements of the matrix A
+    eigenvalues = np.diag(A)
+    return eigenvalues, V
 
-# Матрица A
-A = np.array([
-    [1, np.sqrt(2), 2],
-    [np.sqrt(2), 3, np.sqrt(2)],
-    [2, np.sqrt(2), 1]
-])
+# Define the matrix A
+A = np.array([[1, math.sqrt(2), 2], [math.sqrt(2), 3, math.sqrt(2)], [2, math.sqrt(2), 1]])
 
+# Call the Jacobi method to get eigenvalues and eigenvectors
 eigenvalues, eigenvectors = jacobi_method(A)
 
-print("Eigenvalues:", eigenvalues)
-print("Eigenvectors:\n", eigenvectors)
+# Print the final results
+print("Jacobi's Method Result:")
+print("Eigenvalues:")
+print(eigenvalues)
+print("Eigenvectors:")
+print(eigenvectors)

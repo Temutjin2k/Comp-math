@@ -16,37 +16,27 @@ A = np.array([
     [3,  3, 2]
 ], dtype=float)
 
-# Define the initial approximate inverse B
 B = np.array([
     [0.4,  2.4, -1.4],
     [0.14, 0.14, -0.14],
     [-0.85, -3.8, 2.8]
 ], dtype=float)
 
-# Identity matrix of the same size
-I = np.eye(A.shape[0])
+I = np.eye(A.shape[0]) # Identity matrix
 
-# Iterative refinement
-tolerance = 1e-10  # Convergence threshold
-max_iter = 1000    # Maximum number of iterations
+tolerance = 1e-10  
+max_iter = 1000   
 
 for i in range(max_iter):
-    # Compute residual R = I - AB
-    R = I - np.dot(A, B)
+    R = I - np.dot(A, B) # Compute residual R = I - AB
+    B_new = B + np.dot(B, R) # Update B: B_new = B + BR
     
-    # Update B: B_new = B + BR
-    B_new = B + np.dot(B, R)
-    
-    # Check for convergence
-    if np.linalg.norm(R, ord=np.inf) < tolerance:
+    if np.linalg.norm(R, ord=np.inf) < tolerance:  # Check for convergence
         print(f"Converged in {i} iterations.")
         break
     
-    # Update B for the next iteration
     B = B_new
-
-    # Printing each iteration
-    print(f"iter: {i}\n{B}")
+    print(f"iter: {i}\n{B}") # Printing each iteration
 
 # Output 
 print("Refined Inverse of A:")

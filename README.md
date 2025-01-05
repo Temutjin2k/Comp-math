@@ -1,2 +1,3 @@
-Computational Mathematics | Meirbekova Bibinur
+# Computational Mathematics | Meirbekova Bibinur
+
 Repo with assignments

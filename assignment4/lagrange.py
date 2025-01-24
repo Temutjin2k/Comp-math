@@ -11,10 +11,13 @@ def lagrange_interpolation(x, y, value):
         
     return res
 
-x = [0, 2, 3, 5, 6]  # x-coordinates of data points
-y = [5, 7, 8, 10, 12]  # y-coordinates of data points
-value = 4  # The x-value at which to interpolate
+# x = [0, 2, 3, 5, 6]  # x-coordinates of data points
+# y = [5, 7, 8, 10, 12]  # y-coordinates of data points
+# value = 4  # The x-value at which to interpolate
 
+x = [0, 1, 2, 3, 4]
+y = [1, 1, 8, 27, 64]
+value = 5
 print("lagrange_interpolation")
 result = lagrange_interpolation(x, y, value)
 print(f"The interpolated value at x = {value} is {result}")

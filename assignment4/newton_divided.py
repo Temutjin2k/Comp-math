@@ -1,3 +1,8 @@
+def PrintTable(array):
+    for i in array:
+        print(i)
+
+
 def newton_divided_difference_interpolation(x, y, value):
     n = len(x)
 
@@ -10,6 +15,8 @@ def newton_divided_difference_interpolation(x, y, value):
         for i in range(n - j):
             dd_table[i][j] = (dd_table[i + 1][j - 1] - dd_table[i][j - 1]) / (x[i + j] - x[i])
 
+    PrintTable(dd_table)
+
     res = y[0]
     temp = 1
 
@@ -19,8 +26,13 @@ def newton_divided_difference_interpolation(x, y, value):
 
     return res
 
-x = [2, 3, 6, 7, 9]  # x-coordinates of data points
-y = [15, 39, 243, 375, 771]  # y-coordinates of data points
+# x = [2, 3, 6, 7, 9]  # x-coordinates of data points
+# y = [15, 39, 243, 375, 771]  # y-coordinates of data points
+# value = 5  # The x-value at which to interpolate
+
+
+x = [1, 2, 4, 7]
+y = [1, 8, 64, 343]
 value = 5  # The x-value at which to interpolate
 
 print("newton divided method")

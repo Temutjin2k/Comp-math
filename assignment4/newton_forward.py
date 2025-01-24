@@ -15,7 +15,6 @@ def newton_forward_interpolation(x, y, value):
     for i in range(n):
         diff_table[i][0] = y[i]
 
-    PrintTable(diff_table)
 
     for j in range(1, n):
         for i in range(n - j):
@@ -27,6 +26,7 @@ def newton_forward_interpolation(x, y, value):
     for i in range(1, n):
         u_term *= (u - (i - 1))
         res += (u_term * diff_table[0][i]) / factorial(i)
+        print("#",i, '\n', res)
 
     return res
 
@@ -40,9 +40,13 @@ def factorial(n):
 # y = [14.5, 16.3, 17.5, 18]  # y-coordinates of data points
 # value = 2.5  # The x-value at which to interpolate
 
-x = [3, 5, 7, 9]  # x-coordinates of data points
-y = [180, 150, 120, 90]  # y-coordinates of data points
-value = 4  # The x-value at which to interpolate
+# x = [3, 5, 7, 9]  # x-coordinates of data points
+# y = [180, 150, 120, 90]  # y-coordinates of data points
+# value = 4  # The x-value at which to interpolate
+
+x = [0, 1, 2, 3, 4]
+y = [1, 8, 27, 64, 125]
+value = 2.5  # The x-value at which to interpolate
 
 print("Newton Forward method")
 result = newton_forward_interpolation(x, y, value)

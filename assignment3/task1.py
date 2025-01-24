@@ -1,1 +1,0 @@
-# 1. Self-study of the following methods: Given’s method and House-Hold

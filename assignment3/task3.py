@@ -8,6 +8,9 @@
 # B = 0.14 0.14 −0.14
 #     −0.85 −3.8 2.8
 
+# Neumann series expansion:
+
+
 import numpy as np
 
 A = np.array([

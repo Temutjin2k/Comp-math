@@ -27,8 +27,6 @@ for i in range(n):
 print("Matrix A:")
 print(A)
 print("\nLU decomposition:")
-print("P:")
-print(P)
 print("L:")
 print(L)
 print("U:")

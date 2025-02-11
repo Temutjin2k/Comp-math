@@ -63,7 +63,7 @@ x_vals_modified_euler, y_vals_modified_euler = modified_euler_method(func, x0, y
 x_vals_rk3, y_vals_rk3 = runge_kutta_3rd(func, x0, y0, h, steps)
 x_vals_rk4, y_vals_rk4 = runge_kutta_4th(func, x0, y0, h, steps)
 
-print(f"{'x':<8} {'Exact Solution':<25} {'Euler':<20} {'Modified Euler':<25} {'Runge Kutta 3rd':<25} {'Runge Kutta 4th':<25}")
+print(f"{'x':<8} {'Exact Solution':<25} {'Euler':<20} {'Modified Euler':<25} {'Runge Kutta 3rd':<25} {'Runge Kutta 4rd':<25}")
 
 for x, exact, euler, modified_euler, rk3, rk4 in zip(x_vals_euler, [exact_solution(x) for x in x_vals_euler], y_vals_euler, y_vals_modified_euler, y_vals_rk3, y_vals_rk4):
     print(f"{x:<8.2f} {exact:<25.10f} {euler:<20.10f} {modified_euler:<25.10f} {rk3:<25.10f} {rk4:<25.10f}")

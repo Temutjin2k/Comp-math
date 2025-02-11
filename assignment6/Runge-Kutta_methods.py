@@ -35,7 +35,7 @@ print("Runge-Kutta 3rd order:")
 for i in range(len(x_vals_3rd)):
     print("Step:", i, "| x:", round(x_vals_3rd[i], 3), "| y:", round(y_vals_3rd[i], 5))
 
-def func2(x, y):
+def func2(x, y): 
     return x**2 - y
 
 x0, y0, h, steps = 0, 1, 0.1, 2

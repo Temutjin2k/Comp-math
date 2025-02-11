@@ -1,3 +1,3 @@
-# Computational Mathematics | Meirbekova Bibinur
+# Computational Mathematics | 2 trimester
 
-Repo with assignments
+Repo with assignments for Computational Mathematics course in AITU
